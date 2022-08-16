@@ -73,4 +73,19 @@ class RPS:
         # Destroy all the windows
         cv2.destroyAllWindows()
 
-    
+    def get_winner(self, computer_choice,user_choice):
+        if computer_choice == "rock" and user_choice == "paper":
+            print("You won")
+        elif computer_choice == "rock" and user_choice == "scissors":
+            print("You lost")
+        elif computer_choice == "paper" and user_choice == "rock": 
+            print("You lost")
+        elif computer_choice == "paper" and user_choice == "scissors":
+            print("You won")
+        elif computer_choice == "scissors" and user_choice == "rock": 
+            print("You won")   
+        elif computer_choice == "scissors" and user_choice == "paper": 
+            print("You lost")
+        else: 
+            computer_choice == user_choice
+            print("It's a tie")
