@@ -89,3 +89,14 @@ class RPS:
         else: 
             computer_choice == user_choice
             print("It's a tie")
+
+def play():
+        game = Rock_Paper_Scissors()
+        computer_choice = game.get_computer_choice()
+        user_choice = game.get_user_choice()
+        game.get_winner(computer_choice,user_choice)
+
+if __name__ ==  '__main__':
+    choice_list = ['Rock','Paper','Scissors','Nothing']
+
+    play()
