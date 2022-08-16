@@ -3,7 +3,6 @@ import random
 class Rock_Paper_Scissors:
 
     def __init__(self):
-    #self.computer_choice = random.choice(self.choice_list)
         pass
 
 
