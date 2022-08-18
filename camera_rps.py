@@ -11,11 +11,12 @@ class camera_rps:
         self.model = load_model('keras_model.h5')
         self.user_wins = 0
         self.computer_wins = 0
+        self.round = 1
 
     def get_prediction(self):
         cap = cv2.VideoCapture(0)
         data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-        print("\npress s to start the timer")
+        print("press s to start the timer")
         while True: 
             ret, frame = cap.read()
             cv2.imshow('frame', frame)
@@ -65,13 +66,16 @@ class camera_rps:
             print("It is a tie!\n")
     
     def play(self):
-        print("\nWelcome to a game of Computer Vision Rock Paper Scissors\nFirst to win 3 rounds, takes the trophy\nGood Luck")
+        print("\nWelcome to a game of Computer Vision Rock Paper Scissors\nFirst to win 3 rounds, takes the trophy\nGood Luck\n\nRound 1")
         while self.user_wins < 3 and self.computer_wins < 3:
             computer_choice = self.get_computer_choice()
             user_choice = self.get_user_choice(self.get_prediction())
             print("Computer chose" + " " + computer_choice.lower())
             self.get_winner(computer_choice, user_choice)
             print("The score is " + str(self.user_wins) + " : " + str(self.computer_wins))
+            self.round +=1
+            if self.user_wins < 3 and self.computer_wins < 3:
+                print("\nRound" + " " + str(self.round) + " " + "FIGHT")
         if self.user_wins == 3:
             print("You won the match!")
         else:
