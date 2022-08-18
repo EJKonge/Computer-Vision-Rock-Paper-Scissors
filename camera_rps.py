@@ -50,41 +50,34 @@ class camera_rps:
 
     def get_user_choice(self, prediction):
         choice = np.argmax(prediction)
-        print("You chose " + self.options[choice])
+        print("\nYou chose " + self.options[choice])
         return self.options[choice]
 
     def get_winner(self, computer_choice,user_choice):
         if (computer_choice == "rock" and user_choice == "paper") or (computer_choice == "paper" and user_choice == "scissors") or (computer_choice == "scissors" and user_choice == "rock"):
-            return 1
+            self.user_wins += 1
+            print("You won!\n")
         elif (computer_choice == "rock" and user_choice == "scissors") or (computer_choice == "paper" and user_choice == "rock") or (computer_choice == "scissors" and user_choice == "paper"):
-            return -1
+            self.computer_wins += 1
+            print("You lost!\n")
         else: 
             computer_choice == user_choice
-            return 0
-
+            print("It is a tie!\n")
+    
     def play(self):
         print("\nWelcome to a game of Computer Vision Rock Paper Scissors\nFirst to win 3 rounds, takes the trophy\nGood Luck")
         while self.user_wins < 3 and self.computer_wins < 3:
             computer_choice = self.get_computer_choice()
             user_choice = self.get_user_choice(self.get_prediction())
-            winner = self.get_winner(computer_choice, user_choice)
-            print(user_choice.lower() + " : " + computer_choice.lower() +"\nComputer chose" + " " + computer_choice.lower())
-            if winner == 1:
-                self.user_wins += 1
-                print("You won!\n")
-            elif winner == -1:
-                print("You lost!\n")
-                self.computer_wins += 1
-            elif winner == 0: 
-                print("It is a tie!\n")
-            else:
-                print("No choice was detected.")
+            print("Computer chose" + " " + computer_choice.lower())
+            self.get_winner(computer_choice, user_choice)
             print("The score is " + str(self.user_wins) + " : " + str(self.computer_wins))
         if self.user_wins == 3:
             print("You won the match!")
         else:
             print("You lost the match!")
         cv2.destroyAllWindows()
+
 if __name__ == "__main__":
     rps = camera_rps()
     rps.play()
