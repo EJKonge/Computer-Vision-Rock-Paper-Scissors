@@ -50,7 +50,7 @@ class camera_rps:
         return random.choice(self.options[:-1])
 
     def get_user_choice(self, prediction):
-        choice = np.argmax(prediction)
+        choice = np.argmax(prediction[0])
         print("\nYou chose " + self.options[choice])
         return self.options[choice]
 
